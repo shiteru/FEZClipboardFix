@@ -5,9 +5,10 @@
 ## 使い方
 
 1. `Start.cmd` をダブルクリックします。
-2. 起動したPowerShell画面を開いたまま、幻想大陸をプレイします。
-3. 幻想大陸のチャットをクリックしてコピーします。
-4. 必要な場合は文字化けが自動的に修正されます。
+2. UACの確認画面が表示されたら「はい」を選びます。
+3. 起動したPowerShell画面を開いたまま、幻想大陸をプレイします。
+4. 幻想大陸のチャットをクリックしてコピーします。
+5. 必要な場合は文字化けが自動的に修正されます。
 
 幻想大陸からコピーした文章は、PowerShell画面にも順番に表示されます。
 複数のチャットをコピーしてから、まとめて翻訳などに利用できます。
@@ -48,11 +49,11 @@ FEZClipboardFixは、コピー元が `FEzero_Client` であり、この誤変換
 ツール本体は `FEZClipboardFix.ps1` です。
 
 `Start.cmd` はダブルクリックで起動しやすくするための補助ファイルです。
-内容は次の1行だけで、PowerShellから本体を呼び出します。
 
-```bat
-@powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0FEZClipboardFix.ps1"
-```
+起動時に管理者権限を確認し、管理者でない場合はWindowsのUAC確認画面を表示して、`Start.cmd` 自身を管理者として起動し直します。
+その後、管理者権限のPowerShellで `FEZClipboardFix.ps1` を起動します。
+
+UACの確認画面を自動で承認することはありません。利用者が「はい」を選んだ場合だけ管理者として起動します。
 
 `-ExecutionPolicy Bypass` は、この起動で作られたPowerShellプロセスにだけ適用されます。
 Windows全体のExecution Policy設定を変更するものではありません。
